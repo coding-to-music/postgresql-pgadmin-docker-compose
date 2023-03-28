@@ -104,7 +104,52 @@ $ docker compose down -v
 sudo apt install postgresql-client
 ```
 
+## connect via postgresql-client 
 
 ```
 psql -h localhost -p 5432 -U postgres
+```
+
+Try a command, always end with a semicolin;
+```
+CREATE TABLE IF NOT EXISTS mytable (
+  id SERIAL PRIMARY KEY,
+  datetime TIMESTAMP NOT NULL
+);
+```
+
+verify
+
+```
+SELECT COUNT(*) FROM mytable;
+```
+
+Output
+
+```
+psql (12.14 (Ubuntu 12.14-0ubuntu0.20.04.1), server 15.2 (Debian 15.2-1.pgdg110+1))
+WARNING: psql major version 12, server major version 15.
+         Some psql features might not work.
+Type "help" for help.
+
+postgres=# CREATE TABLE IF NOT EXISTS mytable (
+postgres(#   id SERIAL PRIMARY KEY,
+postgres(#   datetime TIMESTAMP NOT NULL
+postgres(# )go
+postgres-# 
+postgres-# SELECT COUNT(*) FROM mytable
+postgres-# ;
+ERROR:  syntax error at or near "go"
+LINE 4: )go
+         ^
+postgres=# CREATE TABLE IF NOT EXISTS mytable (
+postgres(#   id SERIAL PRIMARY KEY,
+postgres(#   datetime TIMESTAMP NOT NULL
+postgres(# );
+CREATE TABLE
+postgres=# SELECT COUNT(*) FROM mytable;
+ count 
+-------
+     0
+(1 row)
 ```
