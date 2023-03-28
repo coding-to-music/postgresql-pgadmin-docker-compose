@@ -14,7 +14,8 @@ async function runSimulation() {
   try {
     // Create the "mytable" table if it doesn't already exist
     const createTableQuery = `CREATE TABLE IF NOT EXISTS mytable (
-      id SERIAL PRIMARY KEY,
+      id BIGINT PRIMARY KEY,
+      mystring VARCHAR(255) NOT NULL,
       datetime TIMESTAMP NOT NULL
     )`;
     await pool.query(createTableQuery);
@@ -25,15 +26,15 @@ async function runSimulation() {
     console.log(`Number of rows before: ${rowsBefore[0].count}`);
 
     // Generate a unique identifier using the current timestamp
-    const id = `mykey_${new Date().getTime()}`;
+    const id = parseInt(Date.now());
+    const mystring = `mykey_${new Date().getTime()}`;
 
-    // Get the current date and time in human-readable format
-    const now = new Date();
-    const datetime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+    // Get the current datetime in ISO format
+    const datetime = new Date().toISOString();
 
     // Insert a new row into the "mytable" table with the generated id and current datetime
-    const insertQuery = `INSERT INTO mytable (id, datetime) VALUES ($1, $2)`;
-    const values = [id, datetime];
+    const insertQuery = `INSERT INTO mytable (id, mystring, datetime) VALUES ($1, $2, $3)`;
+    const values = [id, mystring, datetime];
     await pool.query(insertQuery, values);
 
     // Retrieve the value of the inserted row and print it to the console

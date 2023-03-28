@@ -150,3 +150,28 @@ postgres=# SELECT COUNT(*) FROM mytable;
      0
 (1 row)
 ```
+
+## Try the simulation
+
+```
+npm run simulation
+```
+
+Output
+
+```
+> postgresql-pgadmin-docker-compose@1.0.0 simulation
+> node ./simulation.js
+
+Number of rows before: 2
+{
+  id: '1679990154903',
+  mystring: 'mykey_1679990154903',
+  datetime: 2023-03-28T12:55:54.903Z
+}
+Number of rows after: 3
+[
+  { id: '1679990031918', datetime: 2023-03-28T12:53:51.918Z },
+  { id: '1679990039882', datetime: 2023-03-28T12:53:59.882Z },
+  { id: '1679990154903', datetime: 2023-03-28T12:55:54.903Z
+```
