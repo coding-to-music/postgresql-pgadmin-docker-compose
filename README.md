@@ -97,3 +97,9 @@ $ docker compose down
 # To delete all data run:
 $ docker compose down -v
 ```
+
+## verify can connect from the command line
+
+```
+psql -h localhost -p 5432 -U postgres
+```
