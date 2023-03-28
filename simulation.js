@@ -1,5 +1,5 @@
+const { Pool } = require('pg');
 require('dotenv').config();
-const { Pool, Client } = require('pg');
 
 // Create a new Pool object to handle connections to Postgres
 const pool = new Pool({
@@ -8,6 +8,21 @@ const pool = new Pool({
   database: process.env.POSTGRES_DB,
   password: process.env.POSTGRES_PW,
   port: process.env.POSTGRES_PORT,
+});
+
+// Create the "mytable" table if it doesn't already exist
+const createTableQuery = `CREATE TABLE IF NOT EXISTS mytable (
+  id SERIAL PRIMARY KEY,
+  datetime TIMESTAMP NOT NULL
+)`;
+pool.query(createTableQuery, (err, res) => {
+  if (err) {
+    console.error('Error creating table', err.stack);
+    console.log('Error creating table, about to return');
+    return;
+  } else {
+    console.log('Table created successfully');
+  }
 });
 
 // Get the number of rows in the "mytable" table before inserting a new row
@@ -22,15 +37,16 @@ pool.query('SELECT COUNT(*) FROM mytable', (err, res) => {
   const datetime = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
 
   // Insert a new row into the "mytable" table with the generated id and current datetime
-  const insertQuery = `INSERT INTO mytable (id, datetime) VALUES ('${id}', '${datetime}')`;
-  pool.query(insertQuery, (err, res) => {
+  const insertQuery = `INSERT INTO mytable (id, datetime) VALUES ($1, $2)`;
+  const values = [id, datetime];
+  pool.query(insertQuery, values, (err, res) => {
     if (err) {
       console.error(err);
     }
 
     // Retrieve the value of the inserted row and print it to the console
-    const selectQuery = `SELECT * FROM mytable WHERE id = '${id}'`;
-    pool.query(selectQuery, (err, res) => {
+    const selectQuery = `SELECT * FROM mytable WHERE id = $1`;
+    pool.query(selectQuery, [id], (err, res) => {
       console.log(res.rows[0]);
 
       // Get the number of rows in the "mytable" table after inserting a new row
