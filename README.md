@@ -124,6 +124,13 @@ verify
 SELECT COUNT(*) FROM mytable;
 ```
 
+Full example of connecting and executing commands
+
+```
+psql -h localhost -p 5432 -U postgres
+Password for user postgres: 
+```
+
 Output
 
 ```
@@ -132,16 +139,6 @@ WARNING: psql major version 12, server major version 15.
          Some psql features might not work.
 Type "help" for help.
 
-postgres=# CREATE TABLE IF NOT EXISTS mytable (
-postgres(#   id SERIAL PRIMARY KEY,
-postgres(#   datetime TIMESTAMP NOT NULL
-postgres(# )go
-postgres-# 
-postgres-# SELECT COUNT(*) FROM mytable
-postgres-# ;
-ERROR:  syntax error at or near "go"
-LINE 4: )go
-         ^
 postgres=# CREATE TABLE IF NOT EXISTS mytable (
 postgres(#   id SERIAL PRIMARY KEY,
 postgres(#   datetime TIMESTAMP NOT NULL
