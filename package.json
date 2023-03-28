@@ -1,0 +1,17 @@
+{
+  "name": "postgresql-pgadmin-docker-compose",
+  "version": "1.0.0",
+  "description": "# 🚀 This example provides a docker compose for using PostgreSQL and pgAdmin 🚀",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "git add . && git commit -m Build && git push",
+    "docker:build": "docker-compose build",
+    "start": "docker-compose pull && docker-compose up --build --remove-orphans",
+    "start:resume": "docker-compose up",
+    "stop": "docker-compose down",
+    "clean": "bash ./purge-all.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
