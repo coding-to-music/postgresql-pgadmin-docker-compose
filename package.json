@@ -8,10 +8,15 @@
     "docker:build": "docker-compose build",
     "start": "docker-compose pull && docker-compose up --build --remove-orphans",
     "start:resume": "docker-compose up",
+    "simulation": "node ./simulation.js",
     "stop": "docker-compose down",
     "clean": "bash ./purge-all.sh"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "pg": "^8.10.0"
+  }
 }
