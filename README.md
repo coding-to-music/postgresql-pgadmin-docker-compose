@@ -101,5 +101,10 @@ $ docker compose down -v
 ## verify can connect from the command line
 
 ```
+sudo apt install postgresql-client
+```
+
+
+```
 psql -h localhost -p 5432 -U postgres
 ```
