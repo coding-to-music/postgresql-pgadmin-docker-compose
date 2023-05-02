@@ -98,6 +98,17 @@ $ docker compose down
 $ docker compose down -v
 ```
 
+## To view a table in pgAdmin using the graphical interface, you can follow these steps:
+
+Open pgAdmin and connect to the server that contains the database where the table is located.
+- In the object browser on the left-hand side, navigate to the database that contains the table.
+- Expand the database and then expand the "Schemas" folder to find the schema that contains the table.
+- Expand the schema and click on the "Tables" folder to view a list of tables in that schema.
+- Locate the table you want to view and right-click on it.
+- Select "View/Edit Data" from the context menu.
+- Choose "View Data" to view the data in the table.
+- You can also directly execute a SQL query to view the table's data using the "Query Tool" in pgAdmin. To do this, simply right-click on the table and select "Query Tool" from the context menu. This will open a new tab where you can write and execute SQL queries against the table.
+
 ## verify can connect from the command line
 
 ```
