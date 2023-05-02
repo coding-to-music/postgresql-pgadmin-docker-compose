@@ -109,6 +109,7 @@ Open pgAdmin and connect to the server that contains the database where the tabl
 - Choose "View Data" to view the data in the table.
 - You can also directly execute a SQL query to view the table's data using the "Query Tool" in pgAdmin. To do this, simply right-click on the table and select "Query Tool" from the context menu. This will open a new tab where you can write and execute SQL queries against the table.
 
+
 ## verify can connect from the command line
 
 ```
